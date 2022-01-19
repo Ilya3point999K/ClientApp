@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">ClientApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="confirm_login">Войти</string>
+    <string name="registration">Зарегистрироваться</string>
+    <string name="photo">Фото</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="patronym">Отчество</string>
+    <string name="age">Возраст</string>
+    <string name="town">Город</string>
+    <string name="street">Улица</string>
+    <string name="building">Дом</string>
+    <string name="flat">Квартира</string>
+    <string name="male">Мужчина</string>
+    <string name="female">Женщина</string>
+    <string name="organization">Организация</string>
+    <string name="post">Должность</string>
+    <string name="cancel">Назад</string>
+    <string name="create">Создать</string>
+    <string name="save">Сохранить</string>
+    <string name="ip">IP</string>
+    <string name="port">Порт</string>
+</resources>
