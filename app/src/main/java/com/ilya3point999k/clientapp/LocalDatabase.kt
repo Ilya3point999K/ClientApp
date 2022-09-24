@@ -2,31 +2,32 @@ package com.ilya3point999k.clientapp
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import java.util.logging.Logger
+import android.widget.Toast
 
-class LocalDatabase(context: Context) : IClientModel {
+class LocalDatabase(val context: Context) : IClientModel {
 
     private val dbHelper = DBHelper(context)
 
     override fun insert(data: HashMap<String, String>) {
             val cv = ContentValues()
-            cv.put(Table.COLUMN.LOGIN, data.get("login"))
-            cv.put(Table.COLUMN.PASSWORD, data.get("password"))
-            cv.put(Table.COLUMN.NAME, data.get("name"))
-            cv.put(Table.COLUMN.SURNAME, data.get("surname"))
-            cv.put(Table.COLUMN.PATRONYM, data.get("patronym"))
-            cv.put(Table.COLUMN.GENDER, data.get("gender"))
-            cv.put(Table.COLUMN.AGE, data.get("age"))
-            cv.put(Table.COLUMN.TOWN, data.get("town"))
-            cv.put(Table.COLUMN.STREET, data.get("street"))
-            cv.put(Table.COLUMN.BUILDING, data.get("building"))
-            cv.put(Table.COLUMN.FLAT, data.get("flat"))
-            cv.put(Table.COLUMN.ORGANIZATION, data.get("organization"))
-            cv.put(Table.COLUMN.POST, data.get("post"))
-            cv.put(Table.COLUMN.PHOTO, data.get("photo"))
+            cv.put(Table.COLUMN.LOGIN, data.get(Table.COLUMN.LOGIN))
+            cv.put(Table.COLUMN.PASSWORD, data.get(Table.COLUMN.PASSWORD))
+            cv.put(Table.COLUMN.NAME, data.get(Table.COLUMN.NAME))
+            cv.put(Table.COLUMN.SURNAME, data.get(Table.COLUMN.SURNAME))
+            cv.put(Table.COLUMN.PATRONYM, data.get(Table.COLUMN.PATRONYM))
+            cv.put(Table.COLUMN.GENDER, data.get(Table.COLUMN.GENDER))
+            cv.put(Table.COLUMN.AGE, data.get(Table.COLUMN.AGE))
+            cv.put(Table.COLUMN.TOWN, data.get(Table.COLUMN.TOWN))
+            cv.put(Table.COLUMN.STREET, data.get(Table.COLUMN.STREET))
+            cv.put(Table.COLUMN.BUILDING, data.get(Table.COLUMN.BUILDING))
+            cv.put(Table.COLUMN.FLAT, data.get(Table.COLUMN.FLAT))
+            cv.put(Table.COLUMN.ORGANIZATION, data.get(Table.COLUMN.ORGANIZATION))
+            cv.put(Table.COLUMN.POST, data.get(Table.COLUMN.POST))
+            cv.put(Table.COLUMN.PHOTO, data.get(Table.COLUMN.PHOTO))
             dbHelper.writableDatabase.insert(Table.TABLE, null, cv)
     }
 
@@ -50,19 +51,19 @@ class LocalDatabase(context: Context) : IClientModel {
             }
             if(cursor.getString(cursor.getColumnIndex(Table.COLUMN.LOGIN)) == request[0] &&
                 cursor.getString(cursor.getColumnIndex(Table.COLUMN.PASSWORD)) == request[1]){
-                respond.put("id", cursor.getString(cursor.getColumnIndex(Table.COLUMN.ID)))
-                respond.put("name", cursor.getString(cursor.getColumnIndex(Table.COLUMN.NAME)))
-                respond.put("surname", cursor.getString(cursor.getColumnIndex(Table.COLUMN.SURNAME)))
-                respond.put("patronym", cursor.getString(cursor.getColumnIndex(Table.COLUMN.PATRONYM)))
-                respond.put("gender", cursor.getString(cursor.getColumnIndex(Table.COLUMN.GENDER)))
-                respond.put("age", cursor.getString(cursor.getColumnIndex(Table.COLUMN.AGE)))
-                respond.put("town", cursor.getString(cursor.getColumnIndex(Table.COLUMN.TOWN)))
-                respond.put("street", cursor.getString(cursor.getColumnIndex(Table.COLUMN.STREET)))
-                respond.put("building", cursor.getString(cursor.getColumnIndex(Table.COLUMN.BUILDING)))
-                respond.put("flat", cursor.getString(cursor.getColumnIndex(Table.COLUMN.FLAT)))
-                respond.put("organization", cursor.getString(cursor.getColumnIndex(Table.COLUMN.ORGANIZATION)))
-                respond.put("post", cursor.getString(cursor.getColumnIndex(Table.COLUMN.POST)))
-                respond.put("photo", cursor.getString(cursor.getColumnIndex(Table.COLUMN.PHOTO)))
+                respond.put(Table.COLUMN.ID, cursor.getString(cursor.getColumnIndex(Table.COLUMN.ID)))
+                respond.put(Table.COLUMN.NAME, cursor.getString(cursor.getColumnIndex(Table.COLUMN.NAME)))
+                respond.put(Table.COLUMN.SURNAME, cursor.getString(cursor.getColumnIndex(Table.COLUMN.SURNAME)))
+                respond.put(Table.COLUMN.PATRONYM, cursor.getString(cursor.getColumnIndex(Table.COLUMN.PATRONYM)))
+                respond.put(Table.COLUMN.GENDER, cursor.getString(cursor.getColumnIndex(Table.COLUMN.GENDER)))
+                respond.put(Table.COLUMN.AGE, cursor.getString(cursor.getColumnIndex(Table.COLUMN.AGE)))
+                respond.put(Table.COLUMN.TOWN, cursor.getString(cursor.getColumnIndex(Table.COLUMN.TOWN)))
+                respond.put(Table.COLUMN.STREET, cursor.getString(cursor.getColumnIndex(Table.COLUMN.STREET)))
+                respond.put(Table.COLUMN.BUILDING, cursor.getString(cursor.getColumnIndex(Table.COLUMN.BUILDING)))
+                respond.put(Table.COLUMN.FLAT, cursor.getString(cursor.getColumnIndex(Table.COLUMN.FLAT)))
+                respond.put(Table.COLUMN.ORGANIZATION, cursor.getString(cursor.getColumnIndex(Table.COLUMN.ORGANIZATION)))
+                respond.put(Table.COLUMN.POST, cursor.getString(cursor.getColumnIndex(Table.COLUMN.POST)))
+                respond.put(Table.COLUMN.PHOTO, cursor.getString(cursor.getColumnIndex(Table.COLUMN.PHOTO)))
                 break;
             }
         }
@@ -72,25 +73,29 @@ class LocalDatabase(context: Context) : IClientModel {
 
     override fun update(data: HashMap<String, String>) {
         val cv = ContentValues()
-        cv.put(Table.COLUMN.NAME, data.get("name"))
-        cv.put(Table.COLUMN.SURNAME, data.get("surname"))
-        cv.put(Table.COLUMN.PATRONYM, data.get("patronym"))
-        cv.put(Table.COLUMN.GENDER, data.get("gender"))
-        cv.put(Table.COLUMN.AGE, data.get("age"))
-        cv.put(Table.COLUMN.TOWN, data.get("town"))
-        cv.put(Table.COLUMN.STREET, data.get("street"))
-        cv.put(Table.COLUMN.BUILDING, data.get("building"))
-        cv.put(Table.COLUMN.FLAT, data.get("flat"))
-        cv.put(Table.COLUMN.ORGANIZATION, data.get("organization"))
-        cv.put(Table.COLUMN.POST, data.get("post"))
-        cv.put(Table.COLUMN.PHOTO, data.get("photo"))
-        Log.w("Loggbef", data.get("name")!!)
-        dbHelper.writableDatabase.update(Table.TABLE, cv, "id = ?", arrayOf(data.get("id")))
+        cv.put(Table.COLUMN.NAME, data.get(Table.COLUMN.NAME))
+        cv.put(Table.COLUMN.SURNAME, data.get(Table.COLUMN.SURNAME))
+        cv.put(Table.COLUMN.PATRONYM, data.get(Table.COLUMN.PATRONYM))
+        cv.put(Table.COLUMN.GENDER, data.get(Table.COLUMN.GENDER))
+        cv.put(Table.COLUMN.AGE, data.get(Table.COLUMN.AGE))
+        cv.put(Table.COLUMN.TOWN, data.get(Table.COLUMN.TOWN))
+        cv.put(Table.COLUMN.STREET, data.get(Table.COLUMN.STREET))
+        cv.put(Table.COLUMN.BUILDING, data.get(Table.COLUMN.BUILDING))
+        cv.put(Table.COLUMN.FLAT, data.get(Table.COLUMN.FLAT))
+        cv.put(Table.COLUMN.ORGANIZATION, data.get(Table.COLUMN.ORGANIZATION))
+        cv.put(Table.COLUMN.POST, data.get(Table.COLUMN.POST))
+        cv.put(Table.COLUMN.PHOTO, data.get(Table.COLUMN.PHOTO))
+        dbHelper.writableDatabase.update(Table.TABLE, cv, Table.COLUMN.ID + " = ?", arrayOf(data.get(Table.COLUMN.ID)))
     }
 
     class DBHelper(val context: Context) : SQLiteOpenHelper(context, NAME, null, VERSION) {
         override fun onCreate(db: SQLiteDatabase?) {
-            db!!.execSQL(Table.CREATE_SCRIPT);
+            try {
+                db!!.execSQL(Table.CREATE_SCRIPT);
+            } catch (e: SQLException){
+                Log.println(Log.ERROR, "LD", e.stackTraceToString())
+                Toast.makeText(context, "Не получилось создать таблицу", Toast.LENGTH_LONG).show()
+            }
         }
 
         override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

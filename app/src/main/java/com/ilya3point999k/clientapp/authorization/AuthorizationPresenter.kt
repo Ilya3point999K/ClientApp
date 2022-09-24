@@ -8,11 +8,11 @@ class AuthorizationPresenter(val clientView: IClientView) {
     }
 
     fun loginButtonClicked(login: String, password: String){
-        if (login == ""){
+        if (login.isEmpty()){
             clientView.pushError("Логин не может быть пустым")
             return
         }
-        if (password == "") {
+        if (password.isEmpty()) {
             clientView.pushError("Пароль не может быть пустым")
             return
         }
@@ -21,11 +21,11 @@ class AuthorizationPresenter(val clientView: IClientView) {
     }
 
     fun registerButtonClicked(login: String, password: String){
-        if (login == ""){
+        if (login.isEmpty()){
             clientView.pushError("Введите желаемый логин")
             return
         }
-        if (password == "") {
+        if (password.isEmpty()) {
             clientView.pushError("Введите желаемый пароль")
             return
         }

@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         if (count > 1) {
             supportFragmentManager.popBackStack()
         }
-        if(supportFragmentManager.getBackStackEntryAt(count - 1).name == "Login"){
+        if(supportFragmentManager.getBackStackEntryAt(count - 1).name.equals("Login")){
             super.onBackPressed()
             finishAndRemoveTask()
         }
